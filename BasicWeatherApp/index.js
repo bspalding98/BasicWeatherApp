@@ -1,22 +1,20 @@
 const container = document.querySelector('.container');
 const search = document.querySelector('.search-box button');
 const weatherBox = document.querySelector('.weather-box');
-const weatherDetails = document.querySelector('.weatherDetails');
+const weatherDetails = document.querySelector('.weather-details');
 const error404 = document.querySelector('.not-found');
 
 search.addEventListener('click', () => {
 
-    // const API_KEY = 'dabfdac2dadbe275a7c2cf8a1ef15369';
+    const API_KEY = 'dabfdac2dadbe275a7c2cf8a1ef15369';
     const city = document.querySelector('.search-box input').value;
 
     if (city === '')
         return;
 
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=peshawar&appid=dabfdac2dadbe275a7c2cf8a1ef15369')
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`)
         .then(response => response.json())
         .then(json => {
-
-            console.log(json.cod);
 
             if (json.cod === '404') {
                 container.style.height = '400px';
@@ -64,8 +62,8 @@ search.addEventListener('click', () => {
 
             temperature.innerHTML = `${parseInt(json.main.temp)}<span>℃</span>`;   // innerHTML - add into the html field of temperature
             description.innerHTML = `${json.weather[0].description}`;
-            humidity.innerHTML = `${json.main.humidity}}%`;
-            wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
+            humidity.innerHTML = `${json.main.humidity}%`;
+            wind.innerHTML = `${parseInt(json.wind.speed)}m/s`;
 
             weatherBox.style.display = '';
             weatherDetails.style.display = '';
