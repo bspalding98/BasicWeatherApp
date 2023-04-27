@@ -1,0 +1,16 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<!--fx:controller tells the runtime which class is the controller for this window. sample this class and Controller for Controller class.-->
+<!--Do all the UI code in here is possible. So if you wanna change UI, you can without changing a line or java code. and also better practice to separate UI code from program code-->
+<?import javafx.scene.text.Font?>
+<GridPane fx:controller="sample.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+    <Label text="Welcome to JavaFX!" textFill="green">
+        <font>
+            <Font name="Times New Roman bold" size="70"/>
+        </font>
+    </Label>
+</GridPane>

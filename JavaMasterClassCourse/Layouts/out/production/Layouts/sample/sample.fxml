@@ -1,0 +1,160 @@
+<?import javafx.scene.control.Button?>
+
+<!--GridPane layers out its children in a grid... Hence the name-->
+<!--Each position in a grid is named default as a cell-->
+
+                                                <!--GRIDPANE-->
+<!--<GridPane fx:controller="sample.Controller"-->
+<!--          xmlns:fx="http://javafx.com/fxml" alignment="top_center" hgap="10" vgap="10" gridLinesVisible="true"> &lt;!&ndash;So this is the alignment and then the hgap and vgap is the distance between the rows and columns&ndash;&gt;-->
+<!--&lt;!&ndash;    is GridPane above if you put gridLinesVisible="true" It will show the lines to see it visually&ndash;&gt;-->
+
+<!--&lt;!&ndash;    Adding padding to have a gap from the title bar and first row&ndash;&gt;-->
+<!--    <padding>-->
+<!--        <Insets top="10"/>-->
+<!--    </padding>-->
+
+
+<!--&lt;!&ndash;    Giving each column constraints to that each column has half the width. So if the right side was bigger it made the left buttons disappear first&ndash;&gt;-->
+<!--&lt;!&ndash;    <columnConstraints>&ndash;&gt;-->
+<!--&lt;!&ndash;        <ColumnConstraints percentWidth="50.0"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <ColumnConstraints percentWidth="50.0"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    </columnConstraints>&ndash;&gt;-->
+
+<!--    &lt;!&ndash;    Button text= "" Is what is going to appear in the button itself.&ndash;&gt;-->
+<!--&lt;!&ndash;    They will all appear on top of each other if only have Buttons because did no specific H and V row  n column. Default is row 0, column 0&ndash;&gt;-->
+<!--&lt;!&ndash;    Add row and column index to specific&ndash;&gt;-->
+<!--&lt;!&ndash;    Also do not need to add them in ordering for griding.&ndash;&gt;-->
+<!--    <Button text="Button One" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.halignment="RIGHT"/>-->
+<!--    <Button text="Button Two" GridPane.rowIndex="0" GridPane.columnIndex="1"/>-->
+<!--    <Button text="Button Three" GridPane.rowIndex="1" GridPane.columnIndex="0"/>-->
+<!--&lt;!&ndash;    Making the button span over multi columns Starts at the columns it's in though and moves right. So need to change it from starting in the second column as it would make a third.&ndash;&gt;-->
+<!--    <Button text="Really Long Button Four" GridPane.rowIndex="3" GridPane.columnIndex="0"-->
+<!--        GridPane.columnSpan="2"/>-->
+<!--    <Button text="Button Five" GridPane.rowIndex="2" GridPane.columnIndex="0"/>-->
+<!--&lt;!&ndash;    Columns are as wide as the widest button or thing in that column, same for rows height as the tallest control&ndash;&gt;-->
+<!--</GridPane>-->
+
+
+                                            <!--HBox & Vbox-->
+<!--HBOX layout. Lays children out horizontally in a row and sizes to preferred width. Any horizontal space leftover. Stretch itself to fill excess, not its children-->
+<!--HBox default fillHeight set to true. So stretches itself to fill its height and width for the rest of the space.-->
+<!--Normally only used in a dialogue situation. Not in a top level siutation-->
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<!--<HBox fx:controller="sample.Controller"-->
+<!--      xmlns:fx="http://javafx.com/fxml" alignment="bottom_right"-->
+<!--      style="-fx-border-color: red; -fx-border-width: 3; -fx-border-style: dashed"-->
+<!--      spacing="10">-->
+
+<!--    <padding>-->
+<!--        <Insets bottom="10" right="10"/>-->
+<!--    </padding>-->
+
+<!--    <Button text="Okay" prefWidth="90"/>-->
+<!--    <Button text="Cancel" prefWidth="90"/>-->
+<!--    <Button text="Help" prefWidth="90"/>-->
+<!--</HBox>-->
+<!--VBox is very similar just veritcally pretty much-->
+
+
+
+                                                <!--BorderPane-->
+<!--Is one of the most commonly used layouts for top level layouts-->
+<!--You can place controls in five positions, top, bottom, left, right, and center-->
+<!--Top, bottom, preferred height and fill rest of width. similar for center and left, right -->
+<!--If a position is empty, no space is allocated to it. SO if nothing in right, center will extend to right.-->
+<!--Nesting layouts to get things where you want them SO if HBox is in bottom layout. and you try align HBox to top_right.
+It will be top_right of only bottom layout and since the height is only the height of the buttons. It will only move right or left. not top, bottom, or center of it-->
+<!--Cannot align BorderPane itself, but can align each of its children-->
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Label?>
+<!--<BorderPane fx:controller="sample.Controller"-->
+<!--            xmlns:fx="http://javafx.com/fxml">-->
+<!--    <top>-->
+<!--        <Label text="This label is in the top position" alignment="center"-->
+<!--               BorderPane.alignment="CENTER"-->
+<!--                style="-fx-border-colour: blue; -fx-border-width: 3; -fx-border-style: dashed"/>    &lt;!&ndash; Wont be in center because Label remains as preferred width.-->
+<!--                                                                    so stays in top left as it doesn't stretch the whole way across. FIX is add BorderPane.aligment&ndash;&gt;-->
+<!--    </top>-->
+<!--    <left>-->
+<!--        <Label text="This label is in the left position" alignment="center"/>-->
+<!--    </left>-->
+<!--    <center>    &lt;!&ndash;Center position will only get any space left over after controls are places into the other positions&ndash;&gt;-->
+<!--        <Label text="This label is in the center of the position reeeeeeeeeeeeeeeeeeeeeeeeeeealy long"/>-->
+<!--    </center>-->
+<!--    <right>-->
+<!--        <Label text="This label is in the right position:"/>-->
+<!--    </right>-->
+<!--    <bottom>-->
+<!--        <HBox spacing="10" alignment="center"> &lt;!&ndash;Need to set position for HBox now or will be buggy. done with layout above&ndash;&gt;-->
+<!--&lt;!&ndash;            This one centers with just alignment because HBox stretches the rest of its border to cover the left over space.&ndash;&gt;-->
+<!--            <padding>-->
+<!--                <Insets bottom="10" top="10"/>-->
+<!--            </padding>-->
+<!--            <Button text="Okay" prefWidth="90"/>-->
+<!--            <Button text="Cancel" prefWidth="90"/>-->
+<!--            <Button text="Help" prefWidth="90"/>-->
+<!--        </HBox>-->
+<!--    </bottom>-->
+<!--</BorderPane>-->
+
+
+                                                    <!--FlowPane-->
+<!--Similar to HBox and Vbox-->
+<!--It however it wraps its children. so it won't be cut off if possible-->
+<?import javafx.scene.layout.FlowPane?>
+<!--<FlowPane fx:controller="sample.Controller"-->
+<!--          xmlns:fx="http://javafx.com/fxml" orientation="VERTICAL">-->
+<!--    <Button text="Button One"/>-->
+<!--    <Button text="Button Two"/>-->
+<!--    <Button text="Button Three"/>-->
+<!--    <Button text="Button Four"/>-->
+<!--    <Button text="Button Five"/>-->
+<!--    <Button text="Button Six"/>-->
+<!--    <Button text="Button Seven"/>-->
+<!--    <Button text="Button Eight"/>-->
+<!--    <Button text="Button Nine"/>-->
+<!--    <Button text="Button Ten"/>-->
+<!--</FlowPane>-->
+
+
+
+<!--TilePane-->
+<!--Every cell is allocated the same width as the largest button-->
+<!--Also are auto centered-->
+<!--And this also WRAPS-->
+
+
+<!--StackPane-->
+<!--Places all the layouts in the stack-->
+<!--control in the StackPane occupy a single cell and stack on top of each other-->
+<?import javafx.scene.layout.StackPane?>
+<StackPane fx:controller="sample.Controller"
+          xmlns:fx="http://javafx.com/fxml">
+    <Button text="Button One" style="-fx-background-color: red"/>
+    <Label text="The label text" style="-fx-background-color: green"/>
+</StackPane>
+
+
+
+
+
+
+
+<!--Layouts allow us to add controls which are UI components to a container without having to write the code required to manage the position and resizing of the controls. Layout will manage that for us.
+8 layouts
+GridPane
+AnchorPane
+StackPane
+HBox
+VBox
+FlowPane
+TilePane
+BorderPane
+
+preferred size, every control computes it's preferred size based on content inside? its' width and height. To make sure the border would just fit around the text.
+
+
+When a control is placed into a layout. It becomes a child of the layout
+Some layouts ensure the children is displayed at their preferred widths and height.
+-->

@@ -1,0 +1,174 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.Accordion?>
+<GridPane fx:controller="sample.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+
+<!--    Adding a button with text CLickme and also an image-->
+<!--    @/ = go to the lib root.-->
+    <Button GridPane.rowIndex="0" GridPane.columnIndex="0" text="Click me">
+            <graphic>
+                <ImageView>
+                    <Image url="@/toolbarButtonGraphics/general/TipOfTheDay24.gif"/>
+                </ImageView>
+            </graphic>
+    </Button>
+    <Label GridPane.rowIndex="0" GridPane.columnIndex="1" text="This is a label"
+        textFill="blue" wrapText="true">
+        <font>
+            <Font name="Arial italic" size="12"/>
+        </font>
+        <graphic>
+            <ImageView>
+                <Image url="@/toolbarButtonGraphics/general/Information24.gif"/>
+            </ImageView>
+        </graphic>
+    </Label>
+<!--    RadioButton is a control. called radio because only one can be pressed at a time when grouped together.
+ Same as radio, can only have one channel at a time. IF NOT GROUPED TOGETHER MULTIPLE CAN BE CLICKED IN-->
+<!--    To group them you need to create a togglegroup which is not apart of the scene graph. So need to use fx to add another class-->
+<!--    $ is used to look for an fx:id that has been created-->
+<!--    Create a default button auto selected. You set selected property to true-->
+    <fx:define>
+        <ToggleGroup fx:id="colorToggleGroup"/>
+    </fx:define>
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="2">
+        <RadioButton text="Red" toggleGroup="$colorToggleGroup"/>
+        <RadioButton text="Blue" toggleGroup="$colorToggleGroup" selected="true"/>
+        <RadioButton text="Green" toggleGroup="$colorToggleGroup"/>
+    </VBox>
+
+<!--    CheckBox is used when there are two choices or states-->
+<!--    Javafx allows for three states, but you need to manually turn it on
+        It is called INDETERMINATE and it is a dash when you click on the checkBox.-->
+<!--    Also defaults are indeterminate (initial) then but once you click it to change you can only has it as yes or no then.-->
+<!--    Could also use checkboxes instead of radioButtons-->
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="3">
+        <CheckBox text="Dog" indeterminate="true"/>
+        <CheckBox text="Cat"/>
+        <CheckBox text="Bird"/>
+    </VBox>
+
+<!--    ToggeButton is a button but when pressed it stays down. until pressed again.-->
+<!--    Can also do multiple togglebuttons together again-->
+<!--    If you wanted only one of them to but toggled. You could put it in a togglegroup like done above with buttons-->
+    <HBox GridPane.columnIndex="4" GridPane.rowIndex="0">
+        <ToggleButton text="Toggle Me"/>
+        <ToggleButton text="Hello"/>
+        <ToggleButton text="Goodbye"/>
+    </HBox>
+
+<!--    text field-->
+<!--    Gives the user input ability-->
+<!--    Can add text in the field like "Type here"
+        However, when that happens we need to code it that when they click it deletes that
+        Or they will need to backspace it themselves-->
+<!--    Also contains, copy, cut, and select all methods, paste-->
+    <TextField GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+<!-- Also has a password field - only diff is the letters are masked and you cannot copy,cut,paste it.-->
+<!-- looks identical to TextField and that is because it is the parent class-->
+    <PasswordField GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+<!--    ComboBox-->
+<!--    If we want to offer several option and not take up as much room-->
+<!--    TO populate this we need to add a list of items-->
+<!--    Can also make it editable by making editable true in comboBox-->
+    <ComboBox GridPane.rowIndex="1" GridPane.columnIndex="2" GridPane.columnSpan="2"> <!-- This made the comboBox span over two columns so could
+                                                 fit the would options in. However if largest width of string is less than 3. will use the preferred width-->
+        <items>
+            <FXCollections fx:factory="observableArrayList">       <!-- This gets a collection of an observableArrayList of items for the combo box-->
+                <String fx:value="Option 1"/>
+                <String fx:value="Option 2"/>
+                <String fx:value="Option 3"/>
+                <String fx:value="Option 4"/>
+                <String fx:value="Option 5"/>
+            </FXCollections>
+        </items>
+        <value>
+            <String fx:value="Option 4"/>   <!-- This is to have a preset option chosen if wanted-->
+        </value>
+    </ComboBox>
+
+<!--    Choice Box-->
+<!--    Closely related to the ComboBox-->
+<!--    ONly difference is there is a tick of the one selected when you go to check through the ComboBox options.-->
+<!--    Are implementation differences. THis is for smaller ones, but if you don't care about the tick. better to just stick with ComboBox-->
+    <ChoiceBox GridPane.rowIndex="1" GridPane.columnIndex="4">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="cb 1"/>
+                <String fx:value="cb 2"/>
+                <String fx:value="cb 3"/>
+                <String fx:value="cb 4"/>
+                <String fx:value="cb 5"/>
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+
+<!--    SLIDER CONTROL-->
+<!--    Want the use to provide a numerical value-->
+<!--    Do need a far amount of columnspace though-->
+<!--    THIS IS VERY WEIRD COLUMNSPAN 4 IS NOT SHOWING max value on slider but 3 and 5 do-->
+<!--    Slider can also be made vertically-->
+    <Slider GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="3" showTickLabels="true"
+        showTickMarks="true" minorTickCount="4" snapToTicks="true"/>
+
+<!--    Spinner-->
+<!--    Similar to Slider but it is a lot more precise. Goes up in values 1-->
+    <Spinner GridPane.rowIndex="2" GridPane.columnIndex="4" min="0" max="100" editable="true" initialValue="50"/>
+
+
+<!--    Color picker-->
+    <ColorPicker GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+
+<!--    Data Picker-->
+    <DatePicker GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+<!--    TitlePane-->
+<!--    It is not actually a layout, it is a control-->
+<!--    Used alone or can add a accordion control. Which a group of tilepanes and only one panes can be opened at a time -->
+<!--    Can use this for like contacts or info tabs that don't want to go to new pages. Just opens it and closes the rest-->
+<!--    Cannot make it horizontal without using code to do so.-->
+    <Accordion GridPane.rowIndex="3" GridPane.columnIndex="2" GridPane.columnSpan="2" expandedPane="$tp3">
+        <panes>
+            <TitledPane text="Titled Pane">
+                <Label text="Label in titled pan"/>
+            </TitledPane>
+            <TitledPane text="Titled Pane 2">
+                <Label text="Label 2 in titled pan"/>
+            </TitledPane>
+            <TitledPane fx:id="tp3" text="Titled Pane 3">
+                <Label text="Label 3 in titled pan"/>
+            </TitledPane>
+        </panes>
+    </Accordion>
+
+
+</GridPane>
+
+
+<!--Button class-->
+<!---->
