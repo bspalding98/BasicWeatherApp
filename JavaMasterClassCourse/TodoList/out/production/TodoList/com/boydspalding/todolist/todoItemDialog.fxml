@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--Dialog pane is a top level of a dialogue-->
+<!--Layout manager used for dialogues-->
+<!--Allows us to set FOUR properties. Header, graphic, content, and buttons-->
+<!--Each property expects a control-->
+<!--Has two convenient properties. headerText and contentText because normally we want text in those. saves having to create a label property for the text -->
+<!--Both non text and text property is set. The non text property will take precedence -->
+<!--EG::::::: Header prop to control and headtext prop is set. Header value will be used and headerText will be ignored -->
+<!--Additonal rules. check dialoguePane documentation to find out if want to.-->
+
+<DialogPane fx:controller="com.boydspalding.todolist.DialogueController" xmlns:fx="http://javafx.com/fxml">
+    <headerText>
+        We could put instructions here   <!-- Can do this or headerText in Controller class near where we initialise this fxml-->
+    </headerText>
+    <content>
+        <GridPane vgap="10" hgap="10">
+            <Label text="Short Description:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="shortDescriptionField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="Details:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextArea fx:id="detailsArea" GridPane.rowIndex="1" GridPane.columnIndex="1" wrapText="true"/>
+            <Label text="Deadline:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="deadlinePicker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
+</DialogPane>

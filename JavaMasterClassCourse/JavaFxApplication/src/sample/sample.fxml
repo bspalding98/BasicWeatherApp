@@ -1,0 +1,32 @@
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.web.WebView?>
+<GridPane fx:controller="sample.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10"
+          stylesheets="styles.css"
+          fx:id="gridPane">
+
+    <Button text="Open..." onAction="#handleClick" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+
+    <Button text="Button Two" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+    <Button id="button_three" text="Button Three" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+
+    <Button fx:id="button4" text="Button Four" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+    <Button text="Button Five" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+
+    <RadioButton text="Choice 1" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+
+    <Label fx:id="label" text="JavaFx Effects" GridPane.rowIndex="1" GridPane.columnIndex="1"
+            rotate="90" onMouseEntered="#handleMouseEnter" onMouseExited="#handleMouseExit"/>
+
+    <!-- Hyperlink to access a url. Auto opens your default browser-->
+    <Hyperlink text="www.javafx.com" GridPane.rowIndex="3" GridPane.columnIndex="0" onAction="#handleLinkClicked"/>
+
+    <!-- If want to view webpage inside the application, use a webview-->
+    <WebView fx:id="webView" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowSpan="3"/>
+</GridPane>
