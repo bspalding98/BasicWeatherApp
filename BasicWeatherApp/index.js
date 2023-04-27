@@ -4,70 +4,73 @@ const weatherBox = document.querySelector('.weather-box');
 const weatherDetails = document.querySelector('.weatherDetails');
 const error404 = document.querySelector('.not-found');
 
-search.addEventListener('click', () =>{
+search.addEventListener('click', () => {
 
-    const APIKey = 'dabfdac2dadbe275a7c2cf8a1ef15369';
+    // const API_KEY = 'dabfdac2dadbe275a7c2cf8a1ef15369';
     const city = document.querySelector('.search-box input').value;
 
     if (city === '')
         return;
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=peshawar&appid=dabfdac2dadbe275a7c2cf8a1ef15369')
         .then(response => response.json())
         .then(json => {
 
-        if (json.cod === '404') {
-            container.style.height = '400px';
-            weatherBox.style.display = 'none';
-            weatherDetails.style.display = 'none';
-            error404.style.display = 'block';
-            error404.classList.add('fadeIn');
-            return;
-        }
+            console.log(json.cod);
 
-        error404.style.display = 'none';
-        error404.classList.add('fadeIn');
+            if (json.cod === '404') {
+                container.style.height = '400px';
+                weatherBox.style.display = 'none';
+                weatherDetails.style.display = 'none';
+                error404.style.display = 'block';
+                error404.classList.add('fadeIn');
+                return;
+            }
 
-        const image = document.querySelector('.weather-box img'); 
-        const temperature = document.querySelector('.weather-box .temperature');
-        const description = document.querySelector('.weather-box .description');
-        const humidity = document.querySelector('.weather-details .humidity span');
-        const wind = document.querySelector('.weather-details .wind span');
+            error404.style.display = 'none';
+            error404.classList.remove('fadeIn');
 
-        switch (json.weather[0].main) {
-            case 'Clear':
-                image.src = 'images/clear.png';
-                break;
+            const image = document.querySelector('.weather-box img');
+            const temperature = document.querySelector('.weather-box .temperature');
+            const description = document.querySelector('.weather-box .description');
+            const humidity = document.querySelector('.weather-details .humidity span');
+            const wind = document.querySelector('.weather-details .wind span');
 
-            case 'Rain':
-                image.src = 'images/rain.png';
-                break;
 
-            case 'Snow':
-                image.src = 'images/snow.png';
-                break;
+            switch (json.weather[0].main) {
+                case 'Clear':
+                    image.src = 'images/clear.png';
+                    break;
 
-            case 'Clouds':
-                image.src = 'images/clouds.png';
-                break;
+                case 'Rain':
+                    image.src = 'images/rain.png';
+                    break;
 
-            case 'Haze':
-                image.src = 'images/haze.png';
-                break;
+                case 'Snow':
+                    image.src = 'images/snow.png';
+                    break;
 
-            default:
-                image.src = '';
-        }
+                case 'Clouds':
+                    image.src = 'images/cloud.png';
+                    break;
 
-        temperature.innerHTML = `${parseInt(json.main.temp)}<span>℃</span>`;   // innerHTML - add into the html field of temperature
-        description.innerHTML = `${json.weather[0].description}`;
-        humidity.innerHTML = `${json.main.humidity}}%`;
-        wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
+                case 'Mist':
+                    image.src = 'images/mist.png';
+                    break;
 
-        weatherBox.style.display = '';
-        weatherDetails.style.display = '';
-        weatherBox.classList.add('fadeIn');
-        weatherDetails.classList.add('fadeIn');
-        container.style.height = '590px';
-    });
+                default:
+                    image.src = '';
+            }
+
+            temperature.innerHTML = `${parseInt(json.main.temp)}<span>℃</span>`;   // innerHTML - add into the html field of temperature
+            description.innerHTML = `${json.weather[0].description}`;
+            humidity.innerHTML = `${json.main.humidity}}%`;
+            wind.innerHTML = `${parseInt(json.wind.speed)}Km/h`;
+
+            weatherBox.style.display = '';
+            weatherDetails.style.display = '';
+            weatherBox.classList.add('fadeIn');
+            weatherDetails.classList.add('fadeIn');
+            container.style.height = '590px';
+        });
 });
