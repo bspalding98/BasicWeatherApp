@@ -1,4 +1,4 @@
-# Development-projects
+# Java-Masterclass Course
 The projects in this folder are my exercises and notes from the Udemy Java Masterclass course on Udemy.
 There were several units learnt with over 50 exercises completed on top of that.
 
